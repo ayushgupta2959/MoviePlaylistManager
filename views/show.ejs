@@ -1,0 +1,37 @@
+<%- include('partials/header') -%>
+<div class="ui main container">
+  <div class="ui card">
+    <div class="content">
+      <div class="header">
+        <%= item.movie.title %>
+      </div>
+      <div class="meta">
+        <span class="date">Created in <%= item.movie.year %></span>
+      </div>
+    </div>
+    <div class="extra content">
+      <form id="change_list" action="/movies/<%= item._id %>?_method=PUT" method="POST">
+        <input type="hidden" name="movie[title]" value="<%= item.movie.title %>">
+        <input type="hidden" name="movie[year]" value="<%= item.movie.year %>">
+        <div class="ui mini two buttons">
+          <% if(item.listType == 2 || item.listType == 3){ %>
+            <button class="ui basic red button" name="listType" value="1" type="submit">Move in To watch</button>
+          <% } %>
+          <% if(item.listType == 1 || item.listType == 3) { %>
+            <button id="move_to_watching" class="ui basic yellow button" name="listType" value="2" type="submit">Move in watching</button>
+          <% } %>
+          <% if(item.listType == 1 || item.listType == 2){ %>
+            <button id="move_to_watched" class="ui basic green button" name="listType" value="3" type="submit">Move in watched</button>
+          <% } %>
+        </div>
+      </form>
+    </div>
+  </div>
+  <div class="ui buttons">
+    <a class="ui blue button" href="/movies/<%= item._id %>/edit">Edit</a>
+    <form action="/movies/<%= item._id %>?_method=DELETE" method="POST">
+      <input class="ui red button" type="submit" value="Delete">
+    </form>
+  </div>
+</div>
+<%- include('partials/footer') -%>

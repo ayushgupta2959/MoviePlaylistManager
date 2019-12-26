@@ -1,0 +1,19 @@
+<%- include('partials/header') -%>
+<div class="ui main container">
+  <h2>Edit Movie Details</h2>
+  <form class="ui form segment" action="/movies/<%= item._id %>?_method=PUT" method="POST">
+    <div class="field">
+      <label>Title</label>
+      <input type="text" name="movie[title]" value="<%= item.movie.title %>">
+    </div>
+    <div class="field">
+      <label>Year</label>
+      <input type="text" name="movie[year]" value="<%= item.movie.year %>">
+    </div>
+    <input type="hidden" name="listType" value="<%= item.listType %>">
+    <div class="content">
+      <input class="ui button" type="submit">
+    </div>
+  </form>
+<div>
+<%- include('partials/footer') -%>
