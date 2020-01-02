@@ -27,7 +27,9 @@ router.post("/movies", function(req, res) {
   Item.create(newItem, function(err, item) {
     if (err) {
       console.log(err);
+      req.flash("error", "Error Occured please add the movie again");
     } else {
+      req.flash("success", "Movie Added in To Watch List");
       console.log("Item created");
       res.redirect("/movies");
     }
@@ -59,18 +61,27 @@ router.put("/movies/:id", function(req, res) {
     movie: req.body.movie,
     listType: req.body.listType
   };
-  console.log(item);
   Item.findByIdAndUpdate(req.params.id, item, function(err, item) {
-    if (err) console.log(err);
-    else res.redirect("/movies/" + req.params.id);
+    if (err) {
+      req.flash("error", "Error Occured plase update again");
+      console.log(err);
+    } else {
+      req.flash("success", "Movie Updated");
+      res.redirect("/movies/" + req.params.id);
+    }
   });
 });
 
 //delete route
 router.delete("/movies/:id", function(req, res) {
   Item.findByIdAndRemove(req.params.id, function(err) {
-    if (err) console.log(err);
-    res.redirect("/movies");
+    if (err) {
+      req.flash("error", "Error Occured please delete the movie again");
+      console.log(err);
+    } else {
+      req.flash("success", "Movie Deleted");
+      res.redirect("/movies");
+    }
   });
 });
 

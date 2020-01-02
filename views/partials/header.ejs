@@ -23,3 +23,12 @@
         </a>
       </div>
     </div>
+    <div class="ui container">
+      <% Object.keys(messages).forEach(function (type) { %>
+        <% messages[type].forEach(function (message) { %>
+          <div class= "ui <%= type %> message" role="alert">
+            <%= message %>
+          </div>
+        <% }) %>
+      <% }) %>
+    </div>
