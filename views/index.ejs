@@ -1,61 +1,61 @@
 <%- include('partials/header') -%>
-  <div class="ui main container">
-    <h1> My Movies</h1>
-    <div class="ui segment">
-      <div class="ui three column very relaxed grid">
-        <div class="column">
-          <h3>Movies to watch</h3>
-          <div class="ui middle aligned divided list">
-            <% items.forEach(function(item){ %>
-              <% if(item.listType == 1){ %>
-                <div class="ui card">
-                  <div class="content">
-                    <a class="header" href="/movies/<%= item._id %>"><%= item.movie.title %></a>
-                    <div class="meta">
-                      <span class="date">Created in <%= item.movie.year %></span>
-                    </div>
-                  </div>
-                </div>
-              <% } %>
-            <% }); %>
+<div class="ui main container">
+  <h1>My Movies</h1>
+  <div class="ui segment">
+    <div class="ui three column very relaxed grid">
+      <div class="column">
+        <h3>Movies to watch</h3>
+        <div class="ui middle aligned divided list">
+          <% items.forEach(function(item){ %> <% if(item.listType == 1){ %>
+          <div class="ui card">
+            <div class="content">
+              <a class="header" href="/movies/<%= item._id %>"
+                ><%= item.movie.title %></a
+              >
+              <div class="meta">
+                <span class="date">Created in <%= item.movie.year %></span>
+              </div>
+            </div>
           </div>
+          <% } %> <% }); %>
         </div>
-        <div class="column">
-          <h3>Movies watching</h3>
-          <div class="ui middle aligned divided list">
-            <% items.forEach(function(item){ %>
-              <% if(item.listType == 2){ %>
-                <div class="ui card">
-                  <div class="content">
-                    <a class="header" href="/movies/<%= item._id %>"><%= item.movie.title %></a>
-                    <div class="meta">
-                      <span class="date">Created in <%= item.movie.year %></span>
-                    </div>
-                  </div>
-                </div>
-              <% } %>
-            <% }); %>
+      </div>
+      <div class="column">
+        <h3>Movies watching</h3>
+        <div class="ui middle aligned divided list">
+          <% items.forEach(function(item){ %> <% if(item.listType == 2){ %>
+          <div class="ui card">
+            <div class="content">
+              <a class="header" href="/movies/<%= item._id %>"
+                ><%= item.movie.title %></a
+              >
+              <div class="meta">
+                <span class="date">Created in <%= item.movie.year %></span>
+              </div>
+            </div>
           </div>
+          <% } %> <% }); %>
         </div>
-        <div class="column">
-          <h3>Movies watched</h3>
-          <div class="ui middle aligned divided list">
-            <% items.forEach(function(item){ %>
-              <% if(item.listType == 3){ %>
-                <div class="ui card">
-                  <div class="content">
-                    <a class="header" href="/movies/<%= item._id %>"><%= item.movie.title %></a>
-                    <div class="meta">
-                      <span class="date">Created in <%= item.movie.year %></span>
-                    </div>
-                  </div>
-                </div>
-              <% } %>
-            <% }); %>
+      </div>
+      <div class="column">
+        <h3>Movies watched</h3>
+        <div class="ui middle aligned divided list">
+          <% items.forEach(function(item){ %> <% if(item.listType == 3){ %>
+          <div class="ui card">
+            <div class="content">
+              <a class="header" href="/movies/<%= item._id %>"
+                ><%= item.movie.title %></a
+              >
+              <div class="meta">
+                <span class="date">Created in <%= item.movie.year %></span>
+              </div>
+            </div>
           </div>
+          <% } %> <% }); %>
         </div>
       </div>
     </div>
-    <a href="/movies/new"  class="ui small basic purple button">Add</a>
   </div>
-  <%- include('partials/footer') -%>
+  <a href="/movies/new" class="ui small basic purple button">Add</a>
+</div>
+<%- include('partials/footer') -%>
