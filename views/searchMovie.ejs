@@ -1,0 +1,14 @@
+<%- include('partials/header') -%>
+<div class="ui main container">
+  <h2>Search Movie</h2>
+  <form class="ui form segment" action="/result" method="POST">
+    <div class="field">
+      <label>Title</label>
+      <input type="text" name="query" />
+    </div>
+    <div class="content">
+      <input class="ui button" type="submit" />
+    </div>
+  </form>
+</div>
+<%- include('partials/footer') -%>

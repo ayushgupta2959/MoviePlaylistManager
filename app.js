@@ -1,7 +1,6 @@
 const express = require("express"),
   app = express(),
   mongoose = require("mongoose"),
-  bodyParser = require("body-parser"),
   path = require("path"),
   flash = require("connect-flash"),
   expressSession = require("express-session"),
@@ -24,28 +23,33 @@ mongoose
     }
   );
 
-app.use(bodyParser.urlencoded({ extended: true }));
+// app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.urlencoded({ extended: true }));
 app.set("view engine", "ejs");
 app.use(express.static(path.join(__dirname, "public")));
 app.use(methodOverride("_method"));
-app.use(flash())
+app.use(flash());
 
-app.use(expressSession({
-  secret: `This is my secret haha`,
-  resave: false,
-  saveUninitialized: false
-}))
+app.use(
+  expressSession({
+    secret: `This is my secret haha`,
+    resave: false,
+    saveUninitialized: false
+  })
+);
 
 app.use((req, res, next) => {
-  res.locals.messages = req.flash()
-  next()
-})
+  res.locals.messages = req.flash();
+  next();
+});
 
 //Routes
 const indexRoutes = require("./routes/index"),
+  searchRoutes = require("./routes/search"),
   movieRoutes = require("./routes/movies");
 
 app.use("/", indexRoutes);
+app.use("/", searchRoutes);
 app.use("/", movieRoutes);
 
 app.listen(PORT, function() {

@@ -1,0 +1,35 @@
+<%- include('./partials/header') -%>
+<div class="ui main container">
+  <% if(data['Response'] == 'True'){ %>
+  <h1>Results</h1>
+  <div class="ui segment">
+    <div id="result-list" class="ui middle aligned divided list">
+      <% data['Search'].forEach(function(movie){ %>
+      <div class="item">
+        <div class="right floated content">
+          <form action="/movies" method="POST">
+            <input
+              type="hidden"
+              name="movie[title]"
+              value="<%= movie['Title']%>"
+            />
+            <input
+              type="hidden"
+              name="movie[year]"
+              value="<%= movie['Year']%>"
+            />
+            <button class="ui button">Add to watch list</button>
+          </form>
+        </div>
+        <div class="content">
+          <div class="header"><%= movie['Title']%></div>
+          <div class="description">Created in <%= movie['Year']%></div>
+        </div>
+      </div>
+      <% }); %> <% } else{ %>
+    </div>
+  </div>
+  <h1>No Result Found</h1>
+  <% } %>
+</div>
+<%- include('./partials/footer') -%>
