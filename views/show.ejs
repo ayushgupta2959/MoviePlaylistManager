@@ -26,30 +26,30 @@
           value="<%= item.movie.year %>"
         />
         <div class="ui mini two buttons">
-          <% if(item.listType == 2 || item.listType == 3){ %>
+          <% if(item.watchType == 2 || item.watchType == 3){ %>
           <button
             class="ui basic red button"
-            name="listType"
+            name="watchType"
             value="1"
             type="submit"
           >
             Move in To watch
           </button>
-          <% } %> <% if(item.listType == 1 || item.listType == 3) { %>
+          <% } %> <% if(item.watchType == 1 || item.watchType == 3) { %>
           <button
             id="move_to_watching"
             class="ui basic yellow button"
-            name="listType"
+            name="watchType"
             value="2"
             type="submit"
           >
             Move in watching
           </button>
-          <% } %> <% if(item.listType == 1 || item.listType == 2){ %>
+          <% } %> <% if(item.watchType == 1 || item.watchType == 2){ %>
           <button
             id="move_to_watched"
             class="ui basic green button"
-            name="listType"
+            name="watchType"
             value="3"
             type="submit"
           >

@@ -6,7 +6,7 @@
       <div class="column">
         <h3>Movies to watch</h3>
         <div class="ui middle aligned divided list">
-          <% items.forEach(function(item){ %> <% if(item.listType == 1){ %>
+          <% items.forEach(function(item){ %> <% if(item.watchType == 1){ %>
           <div class="ui card">
             <div class="content">
               <a class="header" href="/movies/<%= item._id %>"
@@ -23,7 +23,7 @@
       <div class="column">
         <h3>Movies watching</h3>
         <div class="ui middle aligned divided list">
-          <% items.forEach(function(item){ %> <% if(item.listType == 2){ %>
+          <% items.forEach(function(item){ %> <% if(item.watchType == 2){ %>
           <div class="ui card">
             <div class="content">
               <a class="header" href="/movies/<%= item._id %>"
@@ -40,7 +40,7 @@
       <div class="column">
         <h3>Movies watched</h3>
         <div class="ui middle aligned divided list">
-          <% items.forEach(function(item){ %> <% if(item.listType == 3){ %>
+          <% items.forEach(function(item){ %> <% if(item.watchType == 3){ %>
           <div class="ui card">
             <div class="content">
               <a class="header" href="/movies/<%= item._id %>"

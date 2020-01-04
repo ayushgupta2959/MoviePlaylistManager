@@ -5,7 +5,10 @@ const itemSchema = mongoose.Schema({
     title: String,
     year: String
   },
-  listType: Number
+  watchType: {
+    type: Number,
+    default: 1
+  }
 });
 
 module.exports = mongoose.model("Item", itemSchema);

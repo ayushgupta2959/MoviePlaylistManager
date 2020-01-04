@@ -2,7 +2,7 @@ const Item = require("../models/item"),
   express = require("express"),
   router = express.Router({ mergeParams: true });
 
-router.get("/movies", function(req, res) {
+router.get("/movies", (req, res) => {
   Item.find({}, function(err, items) {
     if (err) {
       console.log(err);
@@ -13,31 +13,29 @@ router.get("/movies", function(req, res) {
 });
 
 //new route
-router.get("/movies/new", function(req, res) {
+router.get("/movies/new", (req, res) => {
   res.render("new");
 });
 
 //create route
-router.post("/movies", function(req, res) {
+router.post("/movies", (req, res) => {
   let newItem = {
-    movie: req.body.movie,
-    listType: 1
+    movie: req.body.movie
   };
 
-  Item.create(newItem, function(err, item) {
+  Item.create(newItem, (req, res) => {
     if (err) {
       console.log(err);
       req.flash("error", "Error Occured please add the movie again");
     } else {
       req.flash("success", "Movie Added in To Watch List");
-      console.log("Item created");
       res.redirect("/movies");
     }
   });
 });
 
 //show route
-router.get("/movies/:id", function(req, res) {
+router.get("/movies/:id", (req, res) => {
   Item.findById(req.params.id, function(err, item) {
     if (err) {
       console.log(err);
@@ -48,7 +46,7 @@ router.get("/movies/:id", function(req, res) {
 });
 
 // edit route
-router.get("/movies/:id/edit", function(req, res) {
+router.get("/movies/:id/edit", (req, res) => {
   Item.findById(req.params.id, function(err, item) {
     if (err) console.log(err);
     else res.render("edit", { item: item });
@@ -56,11 +54,12 @@ router.get("/movies/:id/edit", function(req, res) {
 });
 
 //update route
-router.put("/movies/:id", function(req, res) {
+router.put("/movies/:id", (req, res) => {
   let item = {
     movie: req.body.movie,
-    listType: req.body.listType
+    watchType: req.body.watchType
   };
+
   Item.findByIdAndUpdate(req.params.id, item, function(err, item) {
     if (err) {
       req.flash("error", "Error Occured plase update again");
@@ -73,7 +72,7 @@ router.put("/movies/:id", function(req, res) {
 });
 
 //delete route
-router.delete("/movies/:id", function(req, res) {
+router.delete("/movies/:id", (req, res) => {
   Item.findByIdAndRemove(req.params.id, function(err) {
     if (err) {
       req.flash("error", "Error Occured please delete the movie again");
