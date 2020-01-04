@@ -8,11 +8,8 @@ router.get("/search", (req, res) => {
 
 router.post("/result", (req, res) => {
   let query = req.body.query;
-  const url =
-    "http://www.omdbapi.com/?s=" +
-    query +
-    "&apikey=" +
-    process.env.SEARCH_MOVIES_API_KEY;
+  let api_key = process.env.SEARCH_MOVIES_API_KEY;
+  const url = "http://www.omdbapi.com/?s=" + query + "&apikey=" + api_key;
   request(url, (error, response, body) => {
     if (!error && response.statusCode == 200) {
       var parsedData = JSON.parse(body);
