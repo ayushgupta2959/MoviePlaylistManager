@@ -4,7 +4,9 @@ const express = require("express"),
   path = require("path"),
   flash = require("connect-flash"),
   expressSession = require("express-session"),
-  methodOverride = require("method-override");
+  passport = require("passport"),
+  LocalStrategy = require("passport-local");
+methodOverride = require("method-override");
 
 const PORT = process.env.PORT || 3000;
 
@@ -32,13 +34,21 @@ app.use(flash());
 
 app.use(
   expressSession({
-    secret: `This is my secret haha`,
+    secret: process.env.SECRET,
     resave: false,
     saveUninitialized: false
   })
 );
 
+//setting up passport
+app.use(passport.initialize());
+app.use(passport.session());
+passport.use(new LocalStrategy(User.authenticate()));
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
+
 app.use((req, res, next) => {
+  res.locals.currentUser = req.user;
   res.locals.messages = req.flash();
   next();
 });
