@@ -7,6 +7,7 @@ const express = require("express"),
   passport = require("passport"),
   LocalStrategy = require("passport-local"),
   seedDB = require("./seed_db"),
+  User = require('./models/user')
   methodOverride = require("method-override");
 
 const PORT = process.env.PORT || 3000;
@@ -43,14 +44,14 @@ app.use(
 );
 
 // setting up passport
-// app.use(passport.initialize());
-// app.use(passport.session());
-// passport.use(new LocalStrategy(User.authenticate()));
-// passport.serializeUser(User.serializeUser());
-// passport.deserializeUser(User.deserializeUser());
+app.use(passport.initialize());
+app.use(passport.session());
+passport.use(new LocalStrategy(User.authenticate()));
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
 
 app.use((req, res, next) => {
-  // res.locals.currentUser = req.user;
+  res.locals.currentUser = req.user;
   res.locals.messages = req.flash();
   next();
 });
